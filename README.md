@@ -102,10 +102,19 @@ List of users available, which are users of this app would appear under user but
 Recent chat list would be visible below that
 Click on any user or chat (if available) to send/ chat with the other user
 
-**Trade-offs and future improvements**
+**TradeOffs**
+--------------
+1. Used firebase for chat
+2. Focussed more on feature and functionality than UI
+3. Showing users on home screen instead of separate user screen
+4. No Profile
+5. Since firebase sync is almost instant, not using loaders
+
+**Future improvements**
 ------------------------------------
 Group chat -This implementation is for one-one chat for the users, to make it work for group chat, need to add one relation field in message, which will have list of sender/ receiver id's to which those messages would be shown
 There would be a separate relation table which would work as identifier of the group and chats would have same chatid for a group
+One tap login is deprecated, need to use other mechanisms for login too
 
 **UI**
 ----
@@ -130,6 +139,15 @@ Future version can have support for emojis and animations too
 **Support for Audio/ Video calls**
 ------------------------------
 User can have option to call other user either individually or in a defined set of group
+
+**Limitations**
+----------------
+Have single android device and 3 accounts, tried using browserstack, its bit slow can create one user from that
+
+**Resources**
+--------------
+- https://developer.android.com/identity
+- http://developer.android.com/compose
 
 
 
