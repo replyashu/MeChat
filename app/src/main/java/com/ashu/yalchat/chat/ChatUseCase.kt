@@ -7,7 +7,7 @@ import javax.inject.Inject
 class ChatUseCase @Inject constructor(private val repository: ChatRepository) {
 
     fun sendMessage(senderId: String, receiverId: String, message: String, receiverName: String?, senderName: String?)
-        = repository.sendMessage(senderId, receiverId, message, receiverId, senderName)
+        = repository.sendMessage(senderId, receiverId, message, receiverName, senderName)
 
     fun updateTypingStatus(userId: String, isTyping: Boolean) = repository.updateTypingStatus(userId, isTyping)
 

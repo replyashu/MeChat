@@ -48,6 +48,7 @@ class ChatViewModel @Inject constructor(private val chatUseCase: ChatUseCase): V
 
     init {
         fetchUsers()
+        updateTypingStatus(false)
     }
 
 
@@ -59,14 +60,14 @@ class ChatViewModel @Inject constructor(private val chatUseCase: ChatUseCase): V
 
     fun sendMessage(receiverId: String, message: String, receiverName: String?) = viewModelScope.launch {
         currentUser?.let {
-            chatUseCase.sendMessage(it.uid, receiverId, message, receiverName, DataProvider.user?.displayName)
+            chatUseCase.sendMessage(it.uid, receiverId, message, receiverName, it.displayName)
         }
     }
 
     fun updateTypingStatus(isTyping: Boolean) {
         var typed = isTyping
         if (isTyping) {
-            typingJob?.cancel()  // Cancel any previous delay
+            typingJob?.cancel()
             typingJob = viewModelScope.launch {
                 delay(2000)
                 typed = true

@@ -1,5 +1,6 @@
 package com.ashu.yalchat.chat.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -47,13 +48,16 @@ fun ChatScreen(receiverId: String, userName: String, receiverName: String, viewM
     Column(modifier = Modifier.fillMaxSize().padding(16.dp), verticalArrangement = Arrangement.Top, horizontalAlignment = Alignment.CenterHorizontally
     ) {
         var name = DataProvider.user?.displayName
+
+        Log.d("namaaa", name + "  " + receiverName)
         if (name.equals(receiverName.trim())) name = "Me"
         Text("Chat with $receiverName", style = MaterialTheme.typography.bodyMedium)
         LazyColumn(modifier = Modifier
             .weight(1f)
+            .fillMaxWidth()
             .wrapContentHeight()) {
             items(messages.sortedBy { it.timestamp }) { msg ->
-                Text("${name}: ${msg.message} (${msg.status})")
+                Text(modifier = Modifier.align(if (name == receiverName) Alignment.Start else Alignment.End), text = "${name}: ${msg.message} (${msg.status})")
             }
         }
         if (isTyping) {
